@@ -1,6 +1,7 @@
 import csv
 import math
 from typing import List, Tuple, Dict
+""" modele"""
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -15,6 +16,7 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """ init """
         self.__dataset = None
 
     def dataset(self) -> List[List]:
