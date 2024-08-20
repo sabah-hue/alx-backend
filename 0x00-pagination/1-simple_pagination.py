@@ -6,7 +6,7 @@ from typing import List, Tuple
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """ takes two integer arguments and return a tuple"""
     a, b = (page - 1) * page_size, (page - 1) * page_size + page_size
-    return a, b
+    return (a, b)
 
 
 class Server:
@@ -30,6 +30,7 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """ return the appropriate page of the dataset """
+        assert type(page) == int and type(page_size) == int
         assert page > 0 and page_size > 0
         a, b = index_range(page, page_size)
         res = self.dataset()
