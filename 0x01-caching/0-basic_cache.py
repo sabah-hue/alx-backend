@@ -9,6 +9,10 @@ class BasicCache(BaseCaching):
 
     MAX_ITEMS = 0
 
+    def __init__(self):
+        """initialize"""
+        super().__init__()
+
     def put(self, key, item):
         """ Must assign to the dictionary self.cache_data
         the item value for the key key """
