@@ -6,8 +6,6 @@ from flask_babel import Babel
 app = Flask(__name__)
 babel = Babel(app)
 app.url_map.strict_slashes = False
-
-
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
@@ -43,17 +41,17 @@ def get_locale():
 
 def get_user():
     """ get user """
-    id = request.args.get('login_as', None)
-    if id is None or int(id) not in users.keys():
-        return None
-    return users.get(int(id))
+    id = request.args.get('login_as')
+    if id is not None and int(id) in users.keys():
+        x = int(id)
+        return users[x]
+    return None
 
 
 @app.before_request
 def before_request():
     """find a user"""
-    user = get_user()
-    g.user = user
+    g.user = get_user()
 
 
 if __name__ == '__main__':
