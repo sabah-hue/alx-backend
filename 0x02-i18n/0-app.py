@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
+    """ call html file """
     return render_template('0-index.html')
 
 
