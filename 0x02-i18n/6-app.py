@@ -27,7 +27,7 @@ app.config.from_object(Config)
 @app.route('/')
 def hello_world():
     """ call html file """
-    return render_template('5-index.html')
+    return render_template('6-index.html')
 
 
 @babel.localeselector

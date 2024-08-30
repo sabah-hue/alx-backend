@@ -3,6 +3,8 @@
 from flask import Flask, render_template
 from flask import g, request
 from flask_babel import Babel
+from pytz import timezone
+import pytz.exceptions
 app = Flask(__name__)
 babel = Babel(app)
 app.url_map.strict_slashes = False
@@ -27,7 +29,7 @@ app.config.from_object(Config)
 @app.route('/')
 def hello_world():
     """ call html file """
-    return render_template('5-index.html')
+    return render_template('7-index.html')
 
 
 @babel.localeselector
@@ -65,12 +67,11 @@ def get_timezone():
             pass
     if g.user:
         try:
-            zone = g.user.get('timezone')
+            zone = g.user.timezone
             return timezone(zone).zone
         except pytz.exceptions.UnknownTimeZoneError:
             pass
-    defaut = app.config['BABEL_DEFAULT_TIMEZONE']
-    return defaut
+    return app.config['BABEL_DEFAULT_TIMEZONE']
 
 
 if __name__ == '__main__':
