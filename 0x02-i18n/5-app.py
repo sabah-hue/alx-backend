@@ -36,6 +36,12 @@ def get_locale():
     data = request.args.get('locale')
     if data in Config.LANGUAGES:
         return data
+    if g.user:
+        data = g.user.locale
+        return data
+    data = request.headers.get('locale', None)
+    if data in Config.LANGUAGES:
+        return data
     return request.accept_languages.best_match(Config.LANGUAGES)
 
 
